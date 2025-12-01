@@ -868,7 +868,7 @@ export const VictorinoxPage: React.FC<PageProps> = ({ lang }) => {
                  className="absolute inset-0 w-full h-[150%] -top-[25%] z-0"
              >
                  <video 
-                    src="https://wafisohswxqutsttotkb.supabase.co/storage/v1/object/public/Tek/Viktorinox.mp4" 
+                    src="https://wafisohswxqutsttotkb.supabase.co/storage/v1/object/public/Tek/Victor.mp4" 
                     className="w-full h-full object-cover brightness-[0.85]"
                     autoPlay muted loop playsInline
                  />
