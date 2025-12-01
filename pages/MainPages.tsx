@@ -927,14 +927,10 @@ export const VictorinoxPage: React.FC<PageProps> = ({ lang }) => {
              <div className="container mx-auto px-4 relative z-10">
                  <div className="text-center mb-16">
                      <span className="text-gray-500 uppercase tracking-[0.3em] text-sm font-bold block mb-4">Limited Edition</span>
-                     <a 
-                        href="https://www.victorinox.com/en-DE/Products/Swiss-Army-Knife%E2%84%A2-and-Tools/Limited-edition/collection/sak-collection/sak_collection_SAK-C000/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block hover:text-gray-300 transition-colors"
-                     >
+                     {/* Internal Link Only - as requested */}
+                     <div className="inline-block">
                         <h2 className="text-4xl md:text-6xl font-black uppercase mb-6 tracking-tight">Onyx Black Collection</h2>
-                     </a>
+                     </div>
                      <p className="max-w-2xl mx-auto text-gray-400 font-light text-lg">
                         Specially treated with a polispectral process, the monochrome black finish creates a surface that is both timelessly elegant and exceptionally durable.
                      </p>
@@ -1131,11 +1127,32 @@ export const TechPage: React.FC<PageProps> = ({ lang }) => {
 
           <div className="container mx-auto px-4">
              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {products.map(p => (
-                    <div key={p.id} className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-gray-200 dark:border-slate-700 hover:border-accent dark:hover:border-neon transition-all duration-300 hover:shadow-xl dark:hover:shadow-[0_0_20px_rgba(0,255,157,0.2)] group hover:-translate-y-1">
-                        <ProductCard product={p} lang={lang} />
-                    </div>
-                ))}
+                {products.map(p => {
+                    // Replace CineWind (nitecore-cw20) with Video Player
+                    if (p.id === 'nitecore-cw20') {
+                        return (
+                            <div key={p.id} className="bg-black rounded-2xl overflow-hidden border border-gray-800 shadow-2xl relative h-auto w-full group">
+                                <video 
+                                    src="https://wafisohswxqutsttotkb.supabase.co/storage/v1/object/public/Tek/Aria%20Tech.mp4" 
+                                    className="w-full h-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity"
+                                    autoPlay 
+                                    muted 
+                                    loop 
+                                    playsInline 
+                                    controls={false}
+                                />
+                                <div className="absolute bottom-4 left-4 text-xs text-white/50 uppercase tracking-widest font-bold pointer-events-none">
+                                    Tech Showcase
+                                </div>
+                            </div>
+                        );
+                    }
+                    return (
+                        <div key={p.id} className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-gray-200 dark:border-slate-700 hover:border-accent dark:hover:border-neon transition-all duration-300 hover:shadow-xl dark:hover:shadow-[0_0_20px_rgba(0,255,157,0.2)] group hover:-translate-y-1">
+                            <ProductCard product={p} lang={lang} />
+                        </div>
+                    );
+                })}
              </div>
           </div>
        </div>
